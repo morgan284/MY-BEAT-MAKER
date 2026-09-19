@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #09090f;
+    color: white;
+}
+
+.app {
+    width: 95%;
+    max-width: 1250px;
+    margin: auto;
+    padding: 30px 0;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 40px;
+}
+
+header p {
+    color: #999;
+    margin-top: 8px;
+}
+
+.controls {
+    background: #15151f;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+button {
+    border: none;
+    padding: 12px 22px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+label {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+input[type="range"] {
+    width: 180px;
+}
+
+.sequencer {
+    background: #15151f;
+    padding: 25px;
+    border-radius: 15px;
+    overflow-x: auto;
+}
+
+.section-title {
+    margin: 15px 0 20px;
+    font-size: 20px;
+}
+
+.track {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.track span {
+    font-weight: bold;
+    color: #ddd;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(16, minmax(35px, 1fr));
+    gap: 5px;
+}
+
+.step {
+    height: 40px;
+    border: none;
+    background: #292936;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.step:hover {
+    background: #55556b;
+}
+
+.step.active {
+    background: white;
+}
+
+.step.playing {
+    outline: 3px solid #7777ff;
+}
+
+footer {
+    text-align: center;
+    color: #777;
+    margin-top: 25px;
+}
+
+@media (max-width: 700px) {
+
+    .track {
+        grid-template-columns: 75px 1fr;
+    }
+
+    .steps {
+        grid-template-columns: repeat(16, 30px);
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+}
