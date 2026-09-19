@@ -1,0 +1,283 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #09090f;
+    color: white;
+}
+
+.app {
+    width: 95%;
+    max-width: 1250px;
+    margin: auto;
+    padding: 30px 0;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 40px;
+}
+
+header p {
+    color: #999;
+    margin-top: 8px;
+}
+
+.controls {
+    background: #15151f;
+    padding: 20px;
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 15px;
+}
+
+button {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+#recordBtn {
+    background: #ff4b5c;
+    color: white;
+}
+
+#recordBtn.recording {
+    background: #b00020;
+}
+
+label {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="range"] {
+    width: 180px;
+}
+
+#recordingStatus {
+    text-align: center;
+    color: #ff6575;
+    min-height: 25px;
+    margin-bottom: 10px;
+}
+
+
+/* INSTRUMENTS */
+
+.instrument-panel {
+    background: #15151f;
+    padding: 22px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.instrument-panel h2 {
+    margin-bottom: 15px;
+}
+
+.instrument-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.instrument {
+    background: #292936;
+    color: white;
+}
+
+.instrument.active {
+    background: white;
+    color: black;
+}
+
+
+/* PIANO */
+
+.piano-section {
+    background: #15151f;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.piano-section h2 {
+    margin-bottom: 20px;
+}
+
+.piano {
+    display: flex;
+    position: relative;
+    height: 190px;
+    overflow-x: auto;
+}
+
+.key {
+    flex-shrink: 0;
+}
+
+.white {
+    width: 75px;
+    height: 180px;
+    background: white;
+    color: black;
+    border: 1px solid #aaa;
+    border-radius: 0 0 8px 8px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    padding-bottom: 15px;
+}
+
+.white:hover {
+    background: #ddd;
+}
+
+.white.active {
+    background: #bbb;
+}
+
+.black {
+    width: 45px;
+    height: 110px;
+
+    background: #111;
+    color: white;
+
+    margin-left: -22px;
+    margin-right: -22px;
+
+    z-index: 2;
+
+    border-radius: 0 0 6px 6px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    padding-bottom: 10px;
+}
+
+.black:hover {
+    background: #333;
+}
+
+.black.active {
+    background: #555;
+}
+
+
+/* DRUM SEQUENCER */
+
+.sequencer {
+    background: #15151f;
+    padding: 25px;
+    border-radius: 15px;
+    overflow-x: auto;
+}
+
+.section-title {
+    margin-bottom: 20px;
+}
+
+.track {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 10px;
+}
+
+.track span {
+    font-weight: bold;
+    color: #ddd;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(16, minmax(35px, 1fr));
+    gap: 5px;
+}
+
+.step {
+    height: 40px;
+    padding: 0;
+
+    background: #292936;
+    border-radius: 6px;
+}
+
+.step:hover {
+    background: #55556b;
+}
+
+.step.active {
+    background: white;
+}
+
+.step.playing {
+    outline: 3px solid #7777ff;
+}
+
+footer {
+    text-align: center;
+    color: #777;
+    margin-top: 25px;
+}
+
+@media (max-width: 700px) {
+
+    .controls {
+        flex-wrap: wrap;
+    }
+
+    label {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .track {
+        grid-template-columns: 75px 1fr;
+    }
+
+    .steps {
+        grid-template-columns: repeat(16, 30px);
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    .white {
+        width: 60px;
+    }
+
+    .black {
+        width: 38px;
+    }
+}
