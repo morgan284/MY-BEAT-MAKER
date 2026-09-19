@@ -1,0 +1,133 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0b0b12;
+    color: white;
+    min-height: 100vh;
+}
+
+.app {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 0;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 38px;
+}
+
+header p {
+    color: #aaa;
+    margin-top: 8px;
+}
+
+.controls {
+    background: #15151f;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+button {
+    border: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    background: #ffffff;
+    color: #111;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+input[type="range"] {
+    width: 180px;
+}
+
+.sequencer {
+    background: #15151f;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.track {
+    margin-bottom: 25px;
+}
+
+.track h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    gap: 7px;
+}
+
+.step {
+    height: 45px;
+    background: #292936;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.step:hover {
+    background: #44445a;
+}
+
+.step.active {
+    background: #ffffff;
+}
+
+.step.playing {
+    outline: 3px solid #888;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #777;
+}
+
+@media (max-width: 700px) {
+
+    .steps {
+        gap: 4px;
+    }
+
+    .step {
+        height: 35px;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+}
+```
