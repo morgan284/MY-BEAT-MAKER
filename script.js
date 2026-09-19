@@ -184,8 +184,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let timer = null;
 
     const playButton =
-        document.getElementById("playBtn");
-
+        document.getElementById("playBtn").addEventListener(...)
+...
+    {);        
     const stopButton =
         document.getElementById("stopBtn");
 
