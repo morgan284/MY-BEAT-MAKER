@@ -281,3 +281,84 @@ footer {
         width: 38px;
     }
 }
+/* =========================
+   MUSIC FEATURES
+========================= */
+
+.music-section {
+    background: #15151f;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.music-section h2 {
+    margin-bottom: 10px;
+}
+
+.hint {
+    color: #888;
+    margin-bottom: 18px;
+}
+
+/* CHORDS */
+
+.chord-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.chord {
+    background: #292936;
+    color: white;
+    min-width: 65px;
+}
+
+.chord:hover {
+    background: #55556b;
+}
+
+/* BASS */
+
+.bass-controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.bass-note {
+    background: #292936;
+    color: white;
+    width: 60px;
+}
+
+/* PIANO ROLL */
+
+#pianoRoll {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    gap: 4px;
+    overflow-x: auto;
+}
+
+.roll-note {
+    height: 35px;
+    min-width: 35px;
+    border: none;
+    background: #292936;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.roll-note:hover {
+    background: #55556b;
+}
+
+.roll-note.active {
+    background: white;
+}
+
+.roll-note.playing {
+    outline: 2px solid #7777ff;
+}
