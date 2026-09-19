@@ -333,7 +333,278 @@ document.addEventListener("DOMContentLoaded", function () {
             };
         });
 
+;
+console.log("MY BEAT MAKER loaded successfully!");  
 
-    console.log("MY BEAT MAKER loaded successfully!");
+// =====================================
+// 🎼 CHORD MAKER
+// =====================================
+
+const myChords = {
+    C: [261.63, 329.63, 392.00],
+    Am: [220.00, 261.63, 329.63],
+    F: [174.61, 220.00, 261.63],
+    G: [196.00, 246.94, 392.00],
+    Dm: [146.83, 220.00, 293.66],
+    Em: [164.81, 246.94, 329.63]
+};
+
+function playMyTone(frequency, type = "triangle", duration = 0.8) {
+
+    startAudio();
+
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    oscillator.type = type;
+    oscillator.frequency.value = frequency;
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    gain.gain.setValueAtTime(
+        0.25,
+        audioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.01,
+        audioContext.currentTime + duration
+    );
+
+    oscillator.start();
+
+    oscillator.stop(
+        audioContext.currentTime + duration
+    );
+}
+
+
+// CHORD BUTTONS
+
+document.querySelectorAll(".chord").forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        const chord =
+            myChords[button.dataset.chord];
+
+        chord.forEach(function(note, index) {
+
+            setTimeout(function() {
+
+                playMyTone(
+                    note,
+                    "triangle",
+                    1
+                );
+
+            }, index * 30);
+
+        });
+
+    });
 
 });
+
+
+// =====================================
+// 🔊 BASS / 808
+// =====================================
+
+const myBassNotes = {
+    C2: 65.41,
+    D2: 73.42,
+    E2: 82.41,
+    F2: 87.31,
+    G2: 98.00,
+    A2: 110.00,
+    B2: 123.47
+};
+
+document.querySelectorAll(".bass-note").forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        const frequency =
+            myBassNotes[button.dataset.note];
+
+        playMyTone(
+            frequency,
+            "sawtooth",
+            0.9
+        );
+
+    });
+
+});
+
+
+// =====================================
+// 🎹 PIANO ROLL
+// =====================================
+
+const myRollNotes = [
+    261.63,
+    293.66,
+    329.63,
+    349.23,
+    392.00,
+    440.00,
+    493.88,
+    523.25
+];
+
+const myPianoRoll =
+    document.getElementById("pianoRoll");
+
+const myPattern = [];
+
+if (myPianoRoll) {
+
+    for (let row = 0; row < 8; row++) {
+
+        myPattern[row] =
+            new Array(16).fill(false);
+
+        for (let step = 0; step < 16; step++) {
+
+            const noteButton =
+                document.createElement("button");
+
+            noteButton.className = "roll-note";
+
+            noteButton.dataset.row = row;
+            noteButton.dataset.step = step;
+
+            noteButton.addEventListener(
+                "click",
+                function() {
+
+                    myPattern[row][step] =
+                        !myPattern[row][step];
+
+                    noteButton.classList.toggle(
+                        "active",
+                        myPattern[row][step]
+                    );
+
+                    // Play the note when clicked
+
+                    if (myPattern[row][step]) {
+
+                        playMyTone(
+                            myRollNotes[row],
+                            "triangle",
+                            0.5
+                        );
+
+                    }
+
+                }
+            );
+
+            myPianoRoll.appendChild(noteButton);
+        }
+    }
+}
+
+
+// =====================================
+// 🎵 PLAY PIANO ROLL
+// =====================================
+
+let rollPlaying = false;
+let rollStep = 0;
+let rollTimer = null;
+
+function playMyPianoRoll() {
+
+    if (rollPlaying) return;
+
+    rollPlaying = true;
+
+    rollStep = 0;
+
+    const bpmValue =
+        document.getElementById("bpm");
+
+    const bpmNumber =
+        bpmValue ? Number(bpmValue.value) : 120;
+
+    const speed =
+        (60 / bpmNumber) * 250;
+
+    rollTimer = setInterval(function() {
+
+        for (let row = 0; row < 8; row++) {
+
+            if (myPattern[row][rollStep]) {
+
+                playMyTone(
+                    myRollNotes[row],
+                    "triangle",
+                    0.4
+                );
+            }
+        }
+
+        document
+            .querySelectorAll(".roll-note")
+            .forEach(function(button) {
+
+                button.classList.remove(
+                    "playing"
+                );
+
+            });
+
+        document
+            .querySelectorAll(
+                `[data-step="${rollStep}"]`
+            )
+            .forEach(function(button) {
+
+                button.classList.add(
+                    "playing"
+                );
+
+            });
+
+        rollStep++;
+
+        if (rollStep >= 16) {
+            rollStep = 0;
+        }
+
+    }, speed);
+}
+
+
+// =====================================
+// 🛑 STOP PIANO ROLL
+// =====================================
+
+function stopMyPianoRoll() {
+
+    rollPlaying = false;
+
+    clearInterval(rollTimer);
+
+    document
+        .querySelectorAll(".roll-note")
+        .forEach(function(button) {
+
+            button.classList.remove(
+                "playing"
+            );
+
+        });
+}
+
+console.log("🎵 Chords, Bass and Piano Roll ready!");$
+
+});
+
+
+     
